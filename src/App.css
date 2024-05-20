@@ -1,0 +1,30 @@
+*{
+    padding: 0;
+    margin:0;
+    box-sizing: border-box;
+  }
+  
+  .my-active{
+    background-color: white;
+    border-radius: 14px;
+    color: #4B5563;
+  }
+  
+  .my-btn-delete{
+    background-color: red;
+    color: white;
+    padding: 5px 8px;
+    border: 1px solid transparent;
+    transition: all 0.4s;
+  }
+  
+  .my-btn-delete:hover{
+    background-color: white;
+    color: red;
+    border: 1px solid red;
+  }
+  
+  
+  .task-container{
+    height: calc(100vh - 204px);
+  }
