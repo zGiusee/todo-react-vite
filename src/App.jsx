@@ -37,6 +37,8 @@
    image: 'https://avatars.githubusercontent.com/u/144452692?s=96&v=4',
    id: 1,
  };
+
+ const endpoint = "http://127.0.0.1:8000/"
  
  /****************************************************************************
   ****************************************************************************
@@ -56,25 +58,25 @@
  
    // Funzione per ottenere le liste dal server
    const getLists = async () => {
-     try {
-       const response = await fetch("http://127.0.0.1:8000/api/todolists");
-       const data = await response.json();
-       setTodoLists(data.data);
-     } catch (error) {
-       console.error(error);
-     }
-   };
- 
-   // Funzione per ottenere i todo dal server
-   const getTodos = async () => {
-     try {
-       const response = await fetch("http://127.0.0.1:8000/api/todos");
-       const data = await response.json();
-       setTodos(data.data);
-     } catch (error) {
-       console.error(error);
-     }
-   };
+    try {
+      const response = await fetch(`${endpoint}api/todolists`);
+      const data = await response.json();
+      setTodoLists(data.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  // Funzione per ottenere i todo dal server
+  const getTodos = async () => {
+    try {
+      const response = await fetch(`${endpoint}api/todos`);
+      const data = await response.json();
+      setTodos(data.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
  
    // Effetto per ottenere le liste e i todo al montaggio del componente
    useEffect(() => {
@@ -102,7 +104,7 @@
      };
  
      try {
-       await fetch("http://127.0.0.1:8000/api/add/todo", options);
+       await fetch(`${endpoint}api/add/todo`, options);
        getTodos();
      } catch (error) {
        console.error(error);
@@ -120,7 +122,7 @@
      };
  
      try {
-       await fetch("http://127.0.0.1:8000/api/update/todo", options);
+       await fetch(`${endpoint}api/update/todo`, options);
        getTodos();
        getLists();
      } catch (error) {
@@ -139,7 +141,7 @@
      };
  
      try {
-       await fetch("http://127.0.0.1:8000/api/update/list", options);
+       await fetch(`${endpoint}api/update/list`, options);
        getLists();
      } catch (error) {
        console.error(error);
@@ -157,7 +159,7 @@
      };
  
      try {
-       await fetch("http://127.0.0.1:8000/api/delete/todo", options);
+       await fetch(`${endpoint}api/delete/todo`, options);
        getTodos();
        getLists();
      } catch (error) {
@@ -176,7 +178,7 @@
      };
  
      try {
-       await fetch("http://127.0.0.1:8000/api/delete/list", options);
+       await fetch(`${endpoint}api/delete/list`, options);
        setSelectedList(-1);
        getLists();
      } catch (error) {
@@ -195,7 +197,7 @@
      };
  
      try {
-       await fetch("http://127.0.0.1:8000/api/add/list", options);
+       await fetch(`${endpoint}api/add/list`, options);
        getLists();
      } catch (error) {
        console.error(error);
