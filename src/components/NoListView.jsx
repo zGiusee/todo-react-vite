@@ -26,13 +26,13 @@ export default function noListView() {
           <p>
             <FontAwesomeIcon
               icon={faCircleExclamation}
-              className=" text-6xl text-gray-600"
+              className=" text-6xl text-blue-400"
             />
           </p>
-          <p className="text-2xl text-gray-600 mt-3 mb-2">
+          <p className="text-2xl text-blue-400 mt-3 mb-2">
             Nessun elenco selezionato!
           </p>
-          <p className="text-1xl text-gray-600">
+          <p className="text-1xl text-blue-400">
             Seleziona un elenco per aggiungere nuove attività.
           </p>
         </div>

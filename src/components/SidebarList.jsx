@@ -33,18 +33,17 @@ export default function SidebarList({
   const changeListAndTodos = (listId) => {
     // Cambia il valore della lista selezionata
     setSelectedList(listId);
-
-    // Richiama la funzione definita in page.js
-    // dove si effettua il .filter dell'array in base all'id della lista
+    // Richiamo della funzione definita in page.js
     setTodosByListId(listId);
   };
 
   
   return (
+    // Ciclo le liste passate tramite le prop
     <ul className="mx-5 my-3">
       {lists.map((elem) => (
         <ListLink
-          // RICHIAMO LA FUNZIONE APPLICANDO COME PARAMETRO L'ID CORRETTO DEL COMPONENTE
+          // Richiamo della funzione per modificare i dati in base alla lista
           onClick={() => changeListAndTodos(elem.id)}
           key={elem.id}
           linkName={elem.name}
@@ -65,11 +64,11 @@ function ListLink(props) {
   return (
     <li onClick={props.onClick} className={listedClasses}>
       <div>
-        <FontAwesomeIcon icon={props.icon} className="text-sm" />{" "}
-        <span className="ms-2 text-sm">{props.linkName}</span>{" "}
+        <FontAwesomeIcon icon={props.icon} className="text-sm " />{" "}
+        <span className="ms-2 text-sm ">{props.linkName}</span>{" "}
       </div>
       <div>
-        <span className="ms-1 text-end text-sm">({props.count})</span>
+        <span className="ms-1 text-end text-sm ">({props.count})</span>
       </div>
     </li>
   );

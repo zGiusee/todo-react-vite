@@ -17,7 +17,7 @@ export default function AppMain({
 }) {
   return (
     <div className="flex-1 overflow-auto">
-      {/* TODO CONTAINER */}
+      {/* Contenitore delle todo */}
       <div>
         <TodoList
           todos={todos}

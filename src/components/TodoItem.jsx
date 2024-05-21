@@ -37,12 +37,12 @@ export default function TodoItem({
       {/* CHECK BOX AND TASK NAME */}
       <div className="ms-1 flex items-center w-full">
         <StatutsCheckbox
-          onChange={() => onTodoUpdate(id, { done: !done })}
+          onChange={() => onTodoUpdate( {id: id, done: !done })}
           done={done}
         />
 
         <TodoText
-          onChange={(newText) => onTodoUpdate(id, { text: newText })}
+          onChange={(newText) => onTodoUpdate( {id: id, text: newText })}
           done={done}
           text={text}
         />

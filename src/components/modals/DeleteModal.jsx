@@ -53,7 +53,6 @@ function bodyContent(type, text) {
     default:
       break;
   }
-
   return string;
 }
 
