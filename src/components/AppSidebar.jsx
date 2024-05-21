@@ -16,7 +16,7 @@ export default function AppSidebar({
   onCreateList,
 }) {
   return (
-    <div className="flex h-screen overflow-auto text-white  bg-blue-400 ">
+    <div className="flex h-screen overflow-auto text-white bg-blue-400 ">
       <div className="">
         {/* USER INFO'S */}
         <div>

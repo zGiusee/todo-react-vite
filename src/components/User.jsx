@@ -14,10 +14,10 @@ export default function User({ user, onCreateList }) {
         <span className="">({user.id})</span>
       </div>
       <div
-        className="flex items-center cursor-pointer"
+        className="flex items-center add-list-btn rounded-xl cursor-pointer"
         onClick={() => onCreateList()}
       >
-        <div className=" pb-1 px-2 border rounded-xl  text-3xl">
+        <div className=" py-1 px-3  border rounded-xl text-3xl">
           +
         </div>
       </div>

@@ -16,14 +16,14 @@ library.add(faTrash);
 *****************************************************************************
 *****************************************************************************/
 
-export default function deleteButton({ onClick }) {
+export default function deleteButton({ onClick, btnClass, iconClass }) {
   return (
     <button
       onClick={onClick}
       type="button"
-      className="mx-2 my-btn-delete rounded-lg"
+      className={btnClass}
     >
-      <FontAwesomeIcon icon={faTrash} className="text-sm my-delete-icon" />
+      <FontAwesomeIcon icon={faTrash} className={iconClass} />
     </button>
   );
 }

@@ -5,7 +5,7 @@
 *****************************************************************************/
 
 import { useState } from "react";
-import { library } from "@fortawesome/fontawesome-svg-core";
+import { library, text } from "@fortawesome/fontawesome-svg-core";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "@fortawesome/fontawesome-svg-core/styles.css";
@@ -62,7 +62,7 @@ export default function TodoList({
             />
             <div className="mx-5">
               <div className="me-2">
-                <DeleteButton onClick={() => setDeleteModalState(true)} />
+                <DeleteButton iconClass="text-3xl" btnClass="mx-2 rounded-lg my-btn-title-delete " onClick={() => setDeleteModalState(true)} />
                 {deleteModalState && (
                   <DeleteModal
                     type="list"

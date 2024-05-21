@@ -49,7 +49,7 @@ export default function TodoItem({
       </div>
       {/* ICONS/BUTTONS */}
       <div className="me-2">
-        <DeleteButton onClick={() => setDeleteModalState(true)} />
+        <DeleteButton iconClass="text-sm" btnClass="mx-2 my-btn-delete rounded-lg" onClick={() => setDeleteModalState(true)} />
         {deleteModalState && (
           <DeleteModal
             type="todo"
