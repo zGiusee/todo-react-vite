@@ -32,8 +32,8 @@ export default function TodoList({
   onListDelete,
   onListUpdate,
 }) {
-  const nonCompletedTodos = todos.filter((t) => t.done === false);
-  const completedTodos = todos.filter((t) => t.done === true);
+  const nonCompletedTodos = todos.filter((t) => t.done === 0);
+  const completedTodos = todos.filter((t) => t.done === 1);
   const [deleteModalState, setDeleteModalState] = useState(false);
 
   const completedCointainerClasses = `${

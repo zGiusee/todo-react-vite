@@ -39,6 +39,7 @@ export default function SidebarList({
     setTodosByListId(listId);
   };
 
+  
   return (
     <ul className="mx-5 my-3">
       {lists.map((elem) => (

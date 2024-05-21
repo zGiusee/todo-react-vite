@@ -44,17 +44,6 @@
    id: 1,
  };
  
- const initialTodos = [
-   { id: 1, listId: 1, text: "Prima Attività", done: false },
-   { id: 7, listId: 1, text: "Prima Attività", done: false },
-   { id: 8, listId: 1, text: "Prima Attività", done: true },
-   { id: 2, listId: 1, text: "Seconda Attività", done: false },
-   { id: 3, listId: 2, text: "Terza Attività", done: true },
-   { id: 4, listId: 3, text: "Quarta Attività", done: true },
-   { id: 5, listId: 4, text: "Quarta Attività", done: true },
-   { id: 6, listId: 4, text: "Quarta Attività", done: true },
- ];
- 
  /****************************************************************************
   ****************************************************************************
                   RENDER FINALE DELLA PAGINA
@@ -70,10 +59,66 @@
    const [todos, setTodos] = useState([]);
    // Stato per l'utente
    const [currentUser, setCurrentUser] = useState([]);
+
+   const [filteredTodos, setFilteredTodos] = useState([]);
  
+
+  // Funzione per ottenere le liste dal server
+  const getLists = async () => {
+    const response = 
+    fetch("http://127.0.0.1:8000/api/todolists")
+    .then(response => response.json())
+    .then(data => setTodoLists(data.data))
+    .catch((error) => console.log(error))    
+  };
+
+  const getTodos = async () =>{
+  const response = 
+  fetch("http://127.0.0.1:8000/api/todos")
+  .then(response => response.json())
+  .then(data => setTodos(data.data))
+  .catch((error) => console.log(error))   
+  };
+
+  console.log(todos);
+  console.log(filteredTodos);
+  // Effetto per ottenere le liste al montaggio del componente
+  useEffect(() => {
+    getLists();
+    getTodos()
+  }, []);
+
+  useEffect(() => {
+  const filtered = todos.filter((todo) => todo.todo_list_id === selectedList);
+  // Aggiorna lo stato delle todos filtrate
+  setFilteredTodos(filtered);
+  }, [selectedList, todos]);
+
+  useEffect(() =>{
+
+  })
+
+
    // Funzione per creare un nuovo todo
-   const handleCreateTodo = (text) => {
-     // Funzione vuota, da implementare
+   const handleCreateTodo = async (text) => {
+    const options = {
+      method: "POST",
+      body: JSON.stringify({
+        todo_list_id: selectedList,
+        text: text,
+      }),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    }
+
+     const response = await fetch("http://127.0.0.1:8000/api/add/todo", options)
+     .then(response => response.json())
+     .then(data => {
+      console.log(data);
+      getTodos()
+     })
+     .catch(error => console.error(error))
    };
  
    // Funzione per aggiornare un todo
@@ -87,8 +132,27 @@
    };
  
    // Funzione per eliminare una lista
-   const handleListDelete = (id) => {
-     // Funzione vuota, da implementare
+   const handleListDelete = async (id) => {
+    const options = {
+      method: "POST",
+      body: JSON.stringify({
+        
+      }),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    }
+
+    
+     const response = await fetch(`http://127.0.0.1:8000/api/delete/list/${id}`, options)
+     .then(response => response.json())
+     .then(data => {
+      console.log(data);
+     })
+     .catch(error => console.error(error))
+
+     setSelectedList(-1)
+     getLists()
    };
  
    // Funzione per aggiornare una lista
@@ -123,24 +187,12 @@
  
    // Funzione per impostare i todo in base all'ID della lista
    const setTodosByListId = (listId) => {
-     // Funzione vuota, da implementare
+  
+    setSelectedList(listId);
+    setFilteredTodos(todos.filter((t) => t.todo_list_id === listId))
    };
  
-   // Funzione per ottenere le liste dal server
-   const getLists = async () => {
 
-     const response = 
-     fetch("http://127.0.0.1:8000/api/todolists")
-     .then(response => response.json())
-     .then(data => setTodoLists(data.data))
-     .catch((error) => console.log(error))    
-   };
- 
-   // Effetto per ottenere le liste al montaggio del componente
-   useEffect(() => {
-     getLists();
-   }, []);
- 
    return (
      <div className="flex">
        <AppSidebar
@@ -157,7 +209,7 @@
          <AppMain
            lists={todoLists}
            selectedList={selectedList}
-           todos={todos}
+           todos={filteredTodos}
            onTodoUpdate={handleUpdateTodo}
            onTodoDelete={handleTodoDelete}
            onCreate={handleCreateTodo}
